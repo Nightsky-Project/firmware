@@ -58,6 +58,7 @@ target/$(1)/$(2)/mkbuildir: target_prepare_base
 target/$(1)/$(2)/feeds: target/$(1)/$(2)/mkbuildir
 	echo "src-git packages $(PACKAGES_GIT_URL)^$(PACKAGES_REV)" > build/$(1)/$(2)/feeds.conf
 	echo "src-git luci $(LUCI_GIT_URL)^$(LUCI_REV)" >> build/$(1)/$(2)/feeds.conf
+	echo "src-link npackages `readlink -f npackages`" >> build/$(1)/$(2)/feeds.conf
 	$(RM) build/$(1)/$(2)/dl
 	$(LN) $(DL_CACHE) build/$(1)/$(2)/dl
 	build/$(1)/$(2)/scripts/feeds update
